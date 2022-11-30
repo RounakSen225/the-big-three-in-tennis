@@ -6,7 +6,8 @@ How are the Big Three (Roger Federer, Rafael Nadal, Novak Djokovic) in tennis do
 
 Dataset
 
-https://github.com/JeffSackmann/tennis_atp
+Data: https://github.com/JeffSackmann/tennis_atp
+
 The dataset we will be using has been collected by Jeff Sackmann / Tennis Abstract, and is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 The data contains information such as winner, loser, break points won, surface, aces, etc for every ATP match leading as far back as 1968. It also has ATP world rankings. However, we will only be using data from 2000 and onwards, as that is when tennis was really modernized and popularized.
 
