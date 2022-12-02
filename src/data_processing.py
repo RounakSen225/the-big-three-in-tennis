@@ -13,6 +13,8 @@ def read_csv_files(files):
         The dataframe contains all data from read CSV files
     '''
     assert(isinstance(files, str))
+    if not os.path.exists('data'):
+        os.chdir('..')
     path = os.getcwd()
     csv_files = glob.glob(os.path.join(path, files))
     all_data = pd.DataFrame()

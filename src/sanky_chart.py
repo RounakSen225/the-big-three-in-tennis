@@ -1,4 +1,7 @@
 import pandas as pd
+import plotly.graph_objects as go
+import data_processing as dp
+import sanky_chart as sc
 
 def sanky_chart_data(sanky_data):
     '''
@@ -64,3 +67,21 @@ def sanky_chart_data(sanky_data):
         )
     )
     return data, layout
+
+def main():
+    '''
+    The main function of drawing the sanky chart
+    '''
+    all_data = dp.read_gslam_files("data/atp_matches*.csv")
+    #data taken for Sankey diagram is for top 20 players, so that the visualization is clear
+    tgs = len(all_data) #total grand slam matches played
+    sanky_data = all_data.groupby('winner_name',as_index=False).size().sort_values('size', ascending=False).head(20) #data for sanky diagram
+    sanky_data['total_grand_slams'] = 'Grand slam matches from 2003 to 2020: ' + str(+ tgs)
+    sanky_data["winner_name"] = sanky_data["winner_name"] +": "+ (sanky_data['size']).astype(str)
+    data, layout = sc.sanky_chart_data(sanky_data)
+    fig = go.Figure(data=[data], layout=layout)
+
+    fig.show()
+
+if __name__ == '__main__':
+    main()

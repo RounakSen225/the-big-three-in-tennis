@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import matplotlib
 import pandas as pd
+import data_processing as dp
+import serving_analysis as sa
+import mental_toughness as mt
 
 def get_percentage(bpS, bpF):
     '''
@@ -78,3 +81,48 @@ def annotate_plot(ax, df, names, colors):
     assert(isinstance(colors, list))
     for name, colour in zip(names, colors):
         plt.scatter(int(df.loc[[name], ["mental_score"]].values[0]), int(df.loc[[name], ["percentage"]].values[0]), s=100, marker='s', color=colour, label=name)
+
+def main():
+    '''
+    The main function of drawing plots for mental toughness analysis
+    '''
+    all_data = dp.read_gslam_files("data/atp_matches*.csv")
+    data_federer = all_data[all_data['winner_name'] == "Roger Federer"].copy()
+    data_federer.drop([ 'winner_name' ], axis=1, inplace=True)
+    data_nadal = all_data[all_data['winner_name'] == "Rafael Nadal"].copy()
+    data_nadal.drop([ 'winner_name' ], axis=1, inplace=True)
+    data_djoker = all_data[all_data['winner_name'] == "Novak Djokovic"].copy()
+    data_djoker.drop([ 'winner_name' ], axis=1, inplace=True)
+
+    data_federer, _ = sa.player_data("Roger Federer", all_data)
+    data_nadal, _ = sa.player_data("Rafael Nadal", all_data)
+    data_djoker, _ = sa.player_data("Novak Djokovic", all_data)
+
+    # Group the data by winner name and add all the break points
+    mental_df = all_data[['winner_name', 'w_bpSaved', 'w_bpFaced']].groupby('winner_name').sum()
+
+    # Add a percentage collumn with the breakpoint percentage
+    mental_df['percentage'] = mental_df.apply(lambda x: mt.get_percentage(x['w_bpSaved'], x['w_bpFaced']), axis=1)
+
+    # Add a mental points collumn with the mental point scores
+    mt.add_mental_points_col(mental_df, list(mental_df.index), all_data)
+
+    # Plot the scatterplot
+    fig, ax = plt.subplots(figsize=(8,6))
+    ax.scatter(mental_df['mental_score'], mental_df['percentage'], s=20)
+    ax.set_title("Break Point Win Percentage vs. Mental Point Score")
+    ax.set_xlabel('Mental Point Score')
+    ax.set_ylabel('Break Point Win Percentage')
+    mt.annotate_plot(ax, mental_df, ["Roger Federer", "Novak Djokovic", "Rafael Nadal"], ["r", "g", "y"])
+
+    plt.legend(prop={'size': 15})
+
+    plt.show()
+
+    mental_df = mental_df.sort_values('mental_score',ascending=False)
+    
+    pd.set_option('display.max_rows',525)
+    mental_df.head(30)
+
+if __name__ == '__main__':
+    main()
