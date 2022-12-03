@@ -27,18 +27,18 @@ Data analysis and visualization related files:
 
 
 - [sanky_chart.py](src/sanky_chart.py) - Generates a visualization to emphasize dominance of big 3
-- [match_length.py](src/match_length.py) - Compares winning and losing match lengths among big 3 with other tennis players
-- [serving_analysis.py](src/serving_analysis.py) - Extracts information about bowlers given a match and innings
+- [match_length.py](src/match_length.py) - Compares winning and losing match lengths among big 3 and other tennis players
+- [serving_analysis.py](src/serving_analysis.py) - Compares aces, first & second serve and double fault stats among big 3 and other tennis players
 - [mental_toughness.py](src/mental_toughness.py) - Calculates and compares mental toughness using break points
-- [rising_star.py](src/rising_star.py) - Analyzes exisiting data to predict rising star and visualizes his stats and compares with big 3
+- [rising_star.py](src/rising_star.py) - Analyzes exisiting data to predict rising star(s) and compares his stats with big 3
 
 ### Jupyter Notebook
 
-The [Jupyter Notebook](project.ipynb) has all the plotting code. All analyzed data is stored as one cell for easy reproducibility.
+The [Jupyter Notebook](project.ipynb) has all the code for the data analysis.
 
 ### Graphs
 
-The [`pics`](pics/) folder has images as `.png` of all the analysis plots computed.
+The [`pics`](pics/) folder has images as `.png` of all the plots.
 
 ## Third Party Modules
 
@@ -74,8 +74,8 @@ src % match_length.py
 
 Jupyter Notebook -
 
-- Run compete notebook or particular cells of [`project.ipynb`](project.ipynb) for viewing the plots.
+- Run [`project.ipynb`](project.ipynb) for viewing the plots.
 
 ## Presentation
 
-Final Presentation - [Link to Presentation](presentation_group12.pdf)
+Presentation - [Link to Presentation](presentation_group12.pdf)
