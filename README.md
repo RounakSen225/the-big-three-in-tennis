@@ -36,7 +36,7 @@ The [Jupyter Notebook](project.ipynb) has all the plotting code. All analyzed da
 
 ### Graphs
 
-The [`Graphs`](pics/) folder has images as `.png` of all the analysis plots computed.
+The [`pics`](pics/) folder has images as `.png` of all the analysis plots computed.
 
 ## Third Party Modules
 
