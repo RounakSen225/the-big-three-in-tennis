@@ -18,17 +18,19 @@ Dataset link: [Link to source](https://github.com/JeffSackmann/tennis_atp)
 
 Source code for all data scraping and data analysis files are within the `src/` folder. [Link to Folder](src/)
 
-Pre-Processing file:
-
-- [data_preprocessing.py](src/data_preprocessing.py) - Return a class object to load any dataset as a d_frame.
+Data Processing file: [data_processing.py](src/data_processing.py) 
+- Returns a dataframe with cleaned up data, i.e, unneccesary columns and rows without invalid data are removed
+- Reads and processes the ranking data for future data analysis
+- Removes the data of lost or won matches of given players
 
 Data analysis and visualization related files:
 
-- [match_length.py](src/match_length.py) - Obtains basic batsman stats from the data.
-- [mental_toughness.py](src/mental_toughness.py) - Collates player statistics to plot graphs.
-- [sanky_chart.py](src/sanky_chart.py) - Calculate teams W:L ratio and total auction spending per year and plot their graph.
-- [rising_star.py](src/rising_star.py) - Extracts bowler statistics for the given bowler
+
+- [sanky_chart.py](src/sanky_chart.py) - Generates a visualization to emphasize dominance of big 3
+- [match_length.py](src/match_length.py) - Compares winning and losing match lengths among big 3 with other tennis players
 - [serving_analysis.py](src/serving_analysis.py) - Extracts information about bowlers given a match and innings
+- [mental_toughness.py](src/mental_toughness.py) - Calculates and compares mental toughness using break points
+- [rising_star.py](src/rising_star.py) - Analyzes exisiting data to predict rising star and visualizes his stats and compares with big 3
 
 ### Jupyter Notebook
 
